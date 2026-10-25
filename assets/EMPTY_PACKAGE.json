@@ -1,0 +1,60 @@
+{
+  "schema_version": "2.2.0",
+  "case_id": "CASE-NEW",
+  "meta": {
+    "author": "",
+    "created_at": null,
+    "updated_at": null,
+    "timezone": "Asia/Dhaka",
+    "parent_version": null
+  },
+  "evidence_state": "PLANNED",
+  "stage": "INTAKE",
+  "target": {
+    "duration_s": 120,
+    "clip_count": 15,
+    "clip_duration_s": 8,
+    "aspect_ratio": "16:9",
+    "language": "bn-BD",
+    "style": "semi-realistic 2D cel-shaded warm-neutral"
+  },
+  "clinical_scope_id": "CASE-NEW:clinical:v1",
+  "clinical_sha256": null,
+  "script_scope_id": "CASE-NEW:script:v1",
+  "script_sha256": null,
+  "production_scope_id": "CASE-NEW:production:v1",
+  "release_scope_id": "CASE-NEW:release:v1",
+  "sources": [],
+  "facts": [],
+  "unknowns": [],
+  "creative_choices": [],
+  "assets": [],
+  "clips": [],
+  "pilot_clip_ids": [],
+  "approval_events": [],
+  "capabilities": [],
+  "attempts": [],
+  "checkpoints": [],
+  "assembly": {
+    "output": {
+      "path": null,
+      "library_file_id": null,
+      "sha256": null,
+      "version": "v1"
+    },
+    "duration_s": null,
+    "qa_result": "NOT_TESTED",
+    "review_evidence": null,
+    "release_state": "HOLD",
+    "input_contract_sha256": null
+  },
+  "production_sha256": null,
+  "render_authorization": {
+    "quoted_credits_per_output": null,
+    "max_total_credits": null,
+    "max_attempts_per_clip": 2,
+    "current_quote_evidence": null,
+    "authorized_clip_ids": [],
+    "owner_approval_id": null
+  }
+}

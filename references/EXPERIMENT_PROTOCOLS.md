@@ -1,0 +1,13 @@
+# Controlled continuity/audio/device experiments (v2.5.1)
+
+Research guidance only. **No paid generation, account automation, default credit spending or implied pass.** Obtain a finite per-test owner scope and observed price first; never use approved historical C01/C09 merely for testing.
+
+1. **No-credit capability inventory on each device:** Complete the evidence fields in `JIO_ACCOUNT_CAPABILITY_MATRIX.md` before any paid test; inspect exact selected model/mode/device and distinguish official docs, actually visible controls and experimentally verified output. 
+2. **Conditioning route dry preflight:** pick a supported mode from `CONDITIONING_COMPATIBILITY.md`. For a Veo/Vertex API request that includes `referenceImages`, reject combining it with `image` or `lastFrame` before spending; do NOT universally reject Gemini Omni API start-frame plus reference-image examples. Log prompt/reference roles and UI evidence separately.
+3. **Identity A/B:** keep exact new fictional canon/wardrobe/shot geometry/script constant; compare one original still-conditioning run versus saved Character (if the actual Flow account exposes it), at representative frontal and three-quarter frames. Review full motion against canon. Stop on repeated critical identity failure rather than infinite retries.
+4. **Voice pilot:** repeat one short clinically reviewed Bengali line in separate clips from the same voice reference, check exact words, accent, speaker identity and lip-sync. Switch to external master only if native fails on actual output; voice text alone is not a reproducible lock.
+5. **Gemini fresh-session A/B:** identical target shot, same model/asset input, compare second shot in same conversation vs fresh Create Video conversation, without explicit Extend. Measure actual duration and unintended replay. Report whether that exact UI/account condition was observed; do not infer universal cause of past 20/30/40s reports.
+6. **Device QA parity:** for a known test clip, operator fills mobile manual sheet; Windows operator records ffprobe+FFmpeg results if installed. Both must preserve clinical/identity HUMAN_REQUIRED states, and any missing numeric measurement remains NOT_TESTED until a legitimate method supplies it.
+7. **Windows script regression:** synthetic short clips exercise no-audio, black segment, frozen segment, wrong duration, and valid clip. Technical `PASS` never changes medical approval. Mobile path uses human checklist without pretending to execute scripts.
+
+Report actual generation IDs, outputs, cost charged, accepted seconds, criterion reviewer and artifact hash (when available). Keep research source, observed UI controls and tested clips separately.

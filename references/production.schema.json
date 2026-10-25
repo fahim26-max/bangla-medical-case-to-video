@@ -1,0 +1,1329 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Bengali Medical Case-to-Video Production Package v2.2",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "2.2.0"
+    },
+    "case_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9-]{2,79}$"
+    },
+    "meta": {
+      "$ref": "#/$defs/meta"
+    },
+    "evidence_state": {
+      "enum": [
+        "PLANNED",
+        "TESTED",
+        "FAILED",
+        "VERIFIED",
+        "USER-APPROVED"
+      ]
+    },
+    "stage": {
+      "enum": [
+        "INTAKE",
+        "FACT_REGISTER",
+        "CLINICAL_AUDIT",
+        "SCREENPLAY",
+        "BIBLES",
+        "KEYFRAME",
+        "MANIFEST",
+        "PILOT_QA",
+        "FULL_PRODUCTION",
+        "FINAL_AUDIT"
+      ]
+    },
+    "target": {
+      "type": "object",
+      "properties": {
+        "duration_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "clip_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "clip_duration_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "aspect_ratio": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "style": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "duration_s",
+        "clip_count",
+        "clip_duration_s",
+        "aspect_ratio",
+        "language",
+        "style"
+      ],
+      "additionalProperties": false
+    },
+    "clinical_scope_id": {
+      "type": "string"
+    },
+    "clinical_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "script_scope_id": {
+      "type": "string"
+    },
+    "script_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "production_scope_id": {
+      "type": "string"
+    },
+    "release_scope_id": {
+      "type": "string"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "facts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/fact"
+      }
+    },
+    "unknowns": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/unknown"
+      }
+    },
+    "creative_choices": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/choice"
+      }
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/asset"
+      }
+    },
+    "clips": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/clip"
+      }
+    },
+    "pilot_clip_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "approval_events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/approval"
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/capability"
+      }
+    },
+    "attempts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/attempt"
+      }
+    },
+    "checkpoints": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/checkpoint"
+      }
+    },
+    "assembly": {
+      "type": "object",
+      "properties": {
+        "output": {
+          "$ref": "#/$defs/file"
+        },
+        "duration_s": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "qa_result": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_TESTED",
+            "EXCEPTION",
+            "STALE"
+          ]
+        },
+        "review_evidence": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "release_state": {
+          "enum": [
+            "HOLD",
+            "APPROVED"
+          ]
+        },
+        "input_contract_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "output",
+        "duration_s",
+        "qa_result",
+        "review_evidence",
+        "release_state",
+        "input_contract_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "production_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "render_authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "quoted_credits_per_output": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "max_total_credits": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "max_attempts_per_clip": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "current_quote_evidence": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "authorized_clip_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "owner_approval_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "quoted_credits_per_output",
+        "max_total_credits",
+        "max_attempts_per_clip",
+        "current_quote_evidence",
+        "authorized_clip_ids",
+        "owner_approval_id"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "case_id",
+    "meta",
+    "evidence_state",
+    "stage",
+    "target",
+    "clinical_scope_id",
+    "clinical_sha256",
+    "script_scope_id",
+    "script_sha256",
+    "production_scope_id",
+    "release_scope_id",
+    "sources",
+    "facts",
+    "unknowns",
+    "creative_choices",
+    "assets",
+    "clips",
+    "pilot_clip_ids",
+    "approval_events",
+    "capabilities",
+    "attempts",
+    "checkpoints",
+    "assembly",
+    "production_sha256",
+    "render_authorization"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "author": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "timezone": {
+          "const": "Asia/Dhaka"
+        },
+        "parent_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "author",
+        "created_at",
+        "updated_at",
+        "timezone",
+        "parent_version"
+      ],
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "ref": {
+          "type": "string"
+        },
+        "criterion": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "reviewer": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "ref",
+        "criterion",
+        "scope",
+        "reviewer",
+        "at"
+      ],
+      "additionalProperties": false
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "ORIGINAL_CASE",
+            "DERIVATIVE",
+            "GUIDELINE",
+            "UI",
+            "MEDIA",
+            "CONTEXT"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "author": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "locator": {
+          "type": "string"
+        },
+        "original_text": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "accessed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "evidence_state": {
+          "enum": [
+            "PLANNED",
+            "TESTED",
+            "FAILED",
+            "VERIFIED",
+            "USER-APPROVED"
+          ]
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "title",
+        "author",
+        "locator",
+        "original_text",
+        "sha256",
+        "accessed_at",
+        "evidence_state",
+        "limitations"
+      ],
+      "additionalProperties": false
+    },
+    "fact": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "claim": {
+          "type": "string"
+        },
+        "category": {
+          "enum": [
+            "SUPPORTED",
+            "ATTRIBUTED",
+            "UNCONFIRMED",
+            "DRAMATIZED",
+            "EXCLUDED"
+          ]
+        },
+        "source_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quote": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "locator": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "safe_to_use": {
+          "enum": [
+            "YES",
+            "ATTRIBUTION_ONLY",
+            "NO"
+          ]
+        },
+        "clinical_review": {
+          "enum": [
+            "PENDING",
+            "APPROVED",
+            "REJECTED"
+          ]
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "claim",
+        "category",
+        "source_id",
+        "quote",
+        "locator",
+        "safe_to_use",
+        "clinical_review",
+        "notes"
+      ],
+      "additionalProperties": false
+    },
+    "unknown": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "question": {
+          "type": "string"
+        },
+        "impact": {
+          "enum": [
+            "DRAFT",
+            "RENDER",
+            "RELEASE"
+          ]
+        },
+        "resolution": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "question",
+        "impact",
+        "resolution"
+      ],
+      "additionalProperties": false
+    },
+    "choice": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "clinical_fact": {
+          "const": false
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "scope",
+        "clinical_fact"
+      ],
+      "additionalProperties": false
+    },
+    "file": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "library_file_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "library_file_id",
+        "sha256",
+        "version"
+      ],
+      "additionalProperties": false
+    },
+    "asset": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "CHARACTER",
+            "VOICE",
+            "ENVIRONMENT",
+            "STYLE",
+            "KEYFRAME",
+            "AUDIO",
+            "PROP"
+          ]
+        },
+        "description": {
+          "type": "string"
+        },
+        "reference_role": {
+          "enum": [
+            "IDENTITY",
+            "ENVIRONMENT",
+            "STYLE_ONLY",
+            "SCENE",
+            "VOICE",
+            "PROP"
+          ]
+        },
+        "file": {
+          "$ref": "#/$defs/file"
+        },
+        "depends_on": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "fact_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidence_state": {
+          "enum": [
+            "PLANNED",
+            "TESTED",
+            "FAILED",
+            "VERIFIED",
+            "USER-APPROVED"
+          ]
+        },
+        "approval_state": {
+          "enum": [
+            "PENDING",
+            "APPROVED",
+            "REJECTED"
+          ]
+        },
+        "approval_event_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "selection_evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        },
+        "settings": {
+          "type": "object",
+          "properties": {
+            "platform": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "preset": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "flow_name": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "performance": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "sample_asset_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "pronunciation": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "platform",
+            "preset",
+            "flow_name",
+            "performance",
+            "sample_asset_id",
+            "pronunciation"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "id",
+        "role",
+        "description",
+        "reference_role",
+        "file",
+        "depends_on",
+        "fact_ids",
+        "evidence_state",
+        "approval_state",
+        "approval_event_id",
+        "selection_evidence",
+        "settings"
+      ],
+      "additionalProperties": false
+    },
+    "clip": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "start_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "end_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "duration_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "speaker_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "voice_asset_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "visible_character_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "location_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "style_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "keyframe_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "asset_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dialogue_bn": {
+          "type": "string"
+        },
+        "spoken_fact_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "visual_fact_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "creative_choice_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "action": {
+          "type": "string"
+        },
+        "camera": {
+          "type": "string"
+        },
+        "transition": {
+          "type": "string"
+        },
+        "audio_route": {
+          "enum": [
+            "NATIVE",
+            "EXTERNAL",
+            "SILENT"
+          ]
+        },
+        "audio_span_s": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "audio_measurement_evidence": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "audio_asset_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "model": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "resolution": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "selection_evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        },
+        "prompt_text": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "prompt_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "output": {
+          "$ref": "#/$defs/file"
+        },
+        "evidence_state": {
+          "enum": [
+            "PLANNED",
+            "TESTED",
+            "FAILED",
+            "VERIFIED",
+            "USER-APPROVED"
+          ]
+        },
+        "approval_state": {
+          "enum": [
+            "PENDING",
+            "APPROVED",
+            "REJECTED"
+          ]
+        },
+        "approval_event_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "qa": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/qa"
+          }
+        },
+        "blockers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "audio_target_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "speech_presentation": {
+          "enum": [
+            "LIPSYNC",
+            "VOICEOVER",
+            "SILENT"
+          ]
+        },
+        "negative_constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mute_character_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "output_contract_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "id",
+        "version",
+        "start_s",
+        "end_s",
+        "duration_s",
+        "speaker_id",
+        "voice_asset_id",
+        "visible_character_ids",
+        "location_id",
+        "style_id",
+        "keyframe_id",
+        "asset_ids",
+        "dialogue_bn",
+        "spoken_fact_ids",
+        "visual_fact_ids",
+        "creative_choice_ids",
+        "action",
+        "camera",
+        "transition",
+        "audio_route",
+        "audio_span_s",
+        "audio_measurement_evidence",
+        "audio_asset_id",
+        "model",
+        "mode",
+        "resolution",
+        "selection_evidence",
+        "prompt_text",
+        "prompt_sha256",
+        "output",
+        "evidence_state",
+        "approval_state",
+        "approval_event_id",
+        "qa",
+        "blockers",
+        "audio_target_s",
+        "speech_presentation",
+        "negative_constraints",
+        "mute_character_ids",
+        "output_contract_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "qa": {
+      "type": "object",
+      "properties": {
+        "criterion": {
+          "enum": [
+            "CLINICAL",
+            "IDENTITY",
+            "VOICE_BENGALI",
+            "LOCATION_STYLE",
+            "ANATOMY_ACTION",
+            "TIMING",
+            "CONTINUITY"
+          ]
+        },
+        "result": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_TESTED",
+            "EXCEPTION",
+            "STALE"
+          ]
+        },
+        "timecodes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewer": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "exception_approval_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "criterion",
+        "result",
+        "timecodes",
+        "evidence",
+        "reviewer",
+        "exception_approval_id"
+      ],
+      "additionalProperties": false
+    },
+    "approval": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "scope_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "artifact_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "decision": {
+          "enum": [
+            "APPROVED",
+            "REJECTED"
+          ]
+        },
+        "actor": {
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "OWNER",
+            "CLINICIAN",
+            "OWNER_CLINICIAN"
+          ]
+        },
+        "at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "evidence_ref": {
+          "type": "string"
+        },
+        "exceptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scope_note": {
+          "type": "string"
+        },
+        "contract_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "id",
+        "scope_ids",
+        "artifact_sha256",
+        "decision",
+        "actor",
+        "role",
+        "at",
+        "evidence_ref",
+        "exceptions",
+        "scope_note",
+        "contract_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "capability": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "claim": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "evidence_state": {
+          "enum": [
+            "PLANNED",
+            "TESTED",
+            "FAILED",
+            "VERIFIED",
+            "USER-APPROVED"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "claim",
+        "scope",
+        "evidence_state",
+        "evidence",
+        "limitations"
+      ],
+      "additionalProperties": false
+    },
+    "attempt": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "clip_id": {
+          "type": "string"
+        },
+        "take": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "prompt_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "output_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "quoted_credits": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "charged_credits": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "failure_class": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "result": {
+          "enum": [
+            "PLANNED",
+            "FAILED",
+            "ACCEPTED",
+            "REJECTED"
+          ]
+        },
+        "evidence_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "clip_id",
+        "take",
+        "prompt_sha256",
+        "output_sha256",
+        "quoted_credits",
+        "charged_credits",
+        "at",
+        "failure_class",
+        "result",
+        "evidence_ref"
+      ],
+      "additionalProperties": false
+    },
+    "checkpoint": {
+      "type": "object",
+      "properties": {
+        "at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "stage": {
+          "type": "string"
+        },
+        "package_sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "next_action": {
+          "type": "string"
+        },
+        "blockers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "authorization_scope": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "at",
+        "stage",
+        "package_sha256",
+        "next_action",
+        "blockers",
+        "authorization_scope"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

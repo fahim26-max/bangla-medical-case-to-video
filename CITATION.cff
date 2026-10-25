@@ -1,0 +1,6 @@
+cff-version: "1.2.0"
+message: "Cite the exact package version/commit and separately credit original clinical sources and media owners. AI preparation is not clinical sign-off."
+title: "Bengali Medical Case-to-Video"
+type: software
+authors:
+  - name: "ChatGPT / Codex (AI-assisted package preparation)"

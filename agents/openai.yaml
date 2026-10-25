@@ -1,0 +1,10 @@
+version: "2.7.0"
+interface:
+  display_name: "Bengali Medical Case-to-Video"
+  short_description: "Complete Bengali medical drama planning and clip QA"
+  default_prompt: "Use $bangla-medical-case-to-video to prepare the full source-grounded production pack for Flow, Gemini or Google Vids from this original case."
+  icon_small: "assets/icon.svg"
+  icon_large: "assets/icon.svg"
+policy:
+  products: ["chatgpt", "codex", "api", "atlas"]
+  allow_implicit_invocation: true
